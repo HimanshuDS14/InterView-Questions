@@ -1,11 +1,18 @@
-n = int(input())
+n = input()
 
 l = []
-for i in range(n):
-    if len(str(i)) == 1:
+for i in range(int(n)):
+
+    if i <10:
         l.append(i)
-    if len(str(i))>1:
+
+    if i>=10:
         t = str(i)
-        if int(t[1]) - int(t[0]) == 1:
+
+        a = int(t[0])
+        b = int(t[1])
+
+        if (a-b == 1 or a-b == -1) or  (b-a == 1 or b-a ==-1):
             l.append(int(t))
-print(l)
+print(l)        
+

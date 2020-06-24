@@ -1,40 +1,34 @@
-// Search Element in sorted 2D array
-
-
 #include <iostream>
 
 using namespace std;
 
-int search(int mat[4][4] , int n , int x)
+void Stock(int price[] , int n)
 {
-    int i=0,j=n-1;
-    while(i<n && j>=0)
-    {
-        if(mat[i][j]==x)
-        {
-            printf("\n Found at %d ,%d" , i,j);
-            return 1;
+    if(n==1)
+        return;
 
-        }
-        if(mat[i][j] > x)
-        {
-            j--; // Move Left
-        }
-        else
-        {
-            i++; //Move Down
-        }
+    int i=0;
+    while(i<n-1)
+    {
+        while( (i<n-1) && (price[i+1] <= price[i]) )
+            i++;
+        if(i==n-1)
+            break;
+        int buy = i++;
+
+        while( (i<n) && (price[i]>= price[i-1]) )
+            i++;
+        int sell = i-1;
+        cout << "Buy on day : " << buy << "\t sell on day : " <<sell <<endl;
     }
-    printf("\n Element not Found");
-    return 0;
 }
 
 
 
 int main()
 {
-    int mat[4][4] = {  {10,20,30,40}  ,  {15,25,35,45} , {27,29,37,48} , {32,33,39,50}  };
-    search(mat , 4 , 29);
-    getchar();
+     int price[] = {100,180,260,310 ,40,535,695};
+     int n = sizeof(price) / sizeof(price[0]);
+     Stock(price ,n);
     return 0;
 }
